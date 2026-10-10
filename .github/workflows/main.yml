@@ -8,7 +8,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '7,37 * * * *'
+    - cron: '0,15,30,45 * * * *'
 
 
 permissions:
