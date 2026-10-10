@@ -537,4 +537,18 @@ document.querySelector('.news-grid')?.after(emptyMessage);
       }
     });
   });
+  // Tự động lọc chuyên mục khi đến từ trang chủ
+const categoryMap: Record<string, string> = {
+  'kinh-nghiem-chon-ngoi': 'Kinh nghiệm chọn ngói',
+  'thi-cong-bao-duong': 'Thi công & bảo dưỡng',
+  'cong-trinh-thuc-te': 'Công trình thực tế',
+  'tin-fuchi': 'Tin FUCHI'
+};
+
+const params = new URLSearchParams(window.location.search);
+const categorySlug = params.get('filter');
+
+if (categorySlug && categoryMap[categorySlug]) {
+  applyFilter(categoryMap[categorySlug]);
+}
 </script></body></html>
