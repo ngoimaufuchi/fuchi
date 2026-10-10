@@ -1,0 +1,37 @@
+
+name: Build Astro FUCHI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Lay ma nguon
+        uses: actions/checkout@v4
+
+      - name: Cai dat Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Cai dat thu vien
+        run: npm ci
+
+      - name: Build website Astro
+        run: npm run build
+
+      - name: Luu website da build
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuchi-website
+          path: dist/
